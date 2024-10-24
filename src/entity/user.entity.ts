@@ -1,5 +1,4 @@
 import { Column, Entity, OneToMany, Unique } from 'typeorm';
-
 import { BaseEntityModel } from './base.entity';
 import { UserRole } from '@entity/user-role.entity';
 

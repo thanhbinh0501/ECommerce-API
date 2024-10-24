@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-
 import { User } from '@entity/user.entity';
 import { AppLogger } from '@config/logger/app-logger.config';
 import { FetchUserReq } from './dto/req/fetch-user.req';
