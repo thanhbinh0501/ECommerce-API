@@ -7,7 +7,9 @@ import { AuthModule } from './auth/auth.module';
 import { AppLoggerModule } from '@config/logger/app-logger.module';
 import { addTransactionalDataSource, getDataSourceByName } from 'typeorm-transactional';
 import { DataSource } from 'typeorm';
+import { CategoryModule } from './category/category.module';
 import { AppController } from '@module/app.controller';
+import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [
@@ -35,6 +37,8 @@ import { AppController } from '@module/app.controller';
     AuthModule,
     UserModule,
     AppLoggerModule,
+    CategoryModule,
+    ProductModule,
   ],
   controllers: [AppController],
 })
