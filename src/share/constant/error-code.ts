@@ -10,6 +10,7 @@ export const ErrorCode = {
   USER_ALREADY_EXIST: 'NEST-1001',
   WRONG_PASSWORD: 'NEST-1002',
   INVALID_REFRESH_TOKEN: 'NEST-1003',
+  CATEGORY_ALREADY_EXIST: 'NEST-1004',
 
   // Object not found exception (Default: NEST-4xxx)
   USER_NOT_FOUND: 'NEST-4001',
