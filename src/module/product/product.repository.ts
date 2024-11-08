@@ -18,7 +18,7 @@ export class ProductRepository extends Repository<Product> {
     return this.findOneBy({ id });
   }
 
-  async getByName(name: string): Promise<Product | null> {
+  async getByName(name: string): Promise<Product> {
     return this.findOneBy({ name });
   }
 

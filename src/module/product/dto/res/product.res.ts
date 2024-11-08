@@ -1,5 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Expose, Transform } from 'class-transformer';
+import { Category } from '@entity/category.entity';
+import { Color } from '@entity/color.entity';
+import { Rom } from '@entity/rom.entity';
 
 export class ProductRes {
   @Expose()
@@ -16,22 +19,14 @@ export class ProductRes {
   description: string;
 
   @Expose()
-  @ApiProperty()
-  price: number;
+  @ApiProperty({ required: false })
+  categories: Category[];
 
   @Expose()
-  @ApiProperty()
-  quantity: number;
+  @ApiProperty({ required: false })
+  color: Color;
 
   @Expose()
-  @ApiProperty()
-  color: string;
-
-  @Expose()
-  @ApiProperty()
-  rom: number;
-
-  @Expose()
-  @ApiProperty()
-  ram: number;
+  @ApiProperty({ required: false })
+  rom: Rom;
 }

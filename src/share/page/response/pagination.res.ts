@@ -19,6 +19,14 @@ export class PaginationRes<T> {
   totalPage: number;
 
   @Expose()
-  @ApiProperty()
+  @ApiProperty({ type: 'array', items: { type: 'object' } })
   records: T[];
+
+  constructor(page: number, pageSize: number, totalRecords: number, totalPage: number, records: T[]) {
+    this.page = page;
+    this.pageSize = pageSize;
+    this.totalRecords = totalRecords;
+    this.totalPage = totalPage;
+    this.records = records;
+  }
 }

@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsOptional, IsNumber, IsInt, Min } from 'class-validator';
+import { IsArray, IsNumber, IsOptional } from 'class-validator';
 
 export class ProductUpdateReq {
   @IsOptional()
@@ -11,35 +11,18 @@ export class ProductUpdateReq {
   description?: string;
 
   @IsOptional()
-  @IsNumber({ maxDecimalPlaces: 2 })
-  @Min(0)
+  @IsArray()
+  @IsNumber({}, { each: true })
+  @ApiProperty({ required: false, type: [Number] })
+  categoryIds?: number[];
+
+  @IsOptional()
+  @IsNumber()
   @ApiProperty({ required: false })
-  price?: number;
+  colorId?: number;
 
   @IsOptional()
-  @IsInt()
-  @Min(0)
-  @ApiProperty({ required: false, default: 0 })
-  quantity?: number;
-
-  @IsOptional()
+  @IsNumber()
   @ApiProperty({ required: false })
-  color?: string;
-
-  @IsOptional()
-  @IsInt()
-  @Min(0)
-  @ApiProperty({ required: false, description: 'Dung lượng bộ nhớ ROM (GB)' })
-  rom?: number;
-
-  @IsOptional()
-  @IsInt()
-  @Min(0)
-  @ApiProperty({ required: false, description: 'Dung lượng RAM (GB)' })
-  ram?: number;
-
-  @IsOptional()
-  @IsInt()
-  @ApiProperty({ required: false, description: 'ID của category liên kết' })
-  categoryId?: number;
+  romId?: number;
 }

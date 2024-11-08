@@ -14,7 +14,6 @@ import { FetchCategoryReq } from './dto/req/fetch-category.req';
 
 @Injectable()
 export class CategoryBloc {
-  deleteCategory: any;
   constructor(
     private readonly categoryService: CategoryService,
     private readonly log: AppLogger,
@@ -71,5 +70,18 @@ export class CategoryBloc {
     category.updatedBy = currentUserId;
 
     await this.categoryService.save(category);
+  }
+
+  @Transactional()
+  async deleteCategory(id: number): Promise<void> {
+    this.log.info(`Delete category by id: ${id}`);
+    const category = await this.categoryService.getById(id);
+
+    if (!category) {
+      throw new Error(`Category with id ${id} not found.`);
+    }
+
+    await this.categoryService.remove(id);
+    this.log.info(`Category with id ${id} successfully deleted.`);
   }
 }

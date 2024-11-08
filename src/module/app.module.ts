@@ -10,7 +10,9 @@ import { DataSource } from 'typeorm';
 import { CategoryModule } from './category/category.module';
 import { AppController } from '@module/app.controller';
 import { ProductModule } from './product/product.module';
+import { ColorModule } from './color/color.module';
 
+// @ts-ignore
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
@@ -39,6 +41,7 @@ import { ProductModule } from './product/product.module';
     AppLoggerModule,
     CategoryModule,
     ProductModule,
+    ColorModule,
   ],
   controllers: [AppController],
 })

@@ -1,25 +1,24 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { PaginationReq } from '@share/page/request/pagination.req';
 import { IsNumber, IsOptional, IsString } from 'class-validator';
 
-export class FetchProductReq extends PaginationReq {
-  @IsString()
+export class VariantUpdateReq {
   @IsOptional()
+  @IsNumber()
   @ApiProperty({ required: false })
-  keyword: string;
+  colorId?: number;
 
   @IsOptional()
   @IsNumber()
   @ApiProperty({ required: false })
-  categoryId: number;
+  romId?: number;
 
   @IsOptional()
   @IsNumber()
   @ApiProperty({ required: false })
-  colorId: number;
+  price?: number;
 
   @IsOptional()
   @IsNumber()
   @ApiProperty({ required: false })
-  romId: number;
+  stock?: number;
 }

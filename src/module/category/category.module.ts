@@ -11,6 +11,6 @@ import { CategoryRepository } from './category.repository';
   imports: [TypeOrmModule.forFeature([Category]), AppLoggerModule],
   providers: [CategoryBloc, CategoryService, CategoryRepository],
   controllers: [CategoryController],
-  exports: [CategoryService],
+  exports: [CategoryService, CategoryRepository],
 })
 export class CategoryModule {}

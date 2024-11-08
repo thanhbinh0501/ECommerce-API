@@ -1,6 +1,8 @@
-import { Column, Entity, ManyToOne, JoinColumn } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, OneToMany } from 'typeorm';
 import { BaseEntityModel } from './base.entity';
-import { Category } from './category.entity';
+import { Variant } from './variant.entity';
+import { Category } from '@entity/category.entity';
+import { ProductCategory } from '@entity/product-category.entity';
 
 @Entity('products')
 export class Product extends BaseEntityModel {
@@ -13,44 +15,23 @@ export class Product extends BaseEntityModel {
   })
   description: string;
 
-  @Column({
-    type: 'decimal',
-    precision: 10,
-    scale: 2,
+  @OneToMany(() => ProductCategory, (productCategory) => productCategory.product)
+  productCategories: ProductCategory[];
+
+  @ManyToMany(() => Category)
+  @JoinTable({
+    name: 'product_category',
+    joinColumn: {
+      name: 'productId',
+      referencedColumnName: 'id',
+    },
+    inverseJoinColumn: {
+      name: 'categoryId',
+      referencedColumnName: 'id',
+    },
   })
-  price: number;
+  categories: Category[];
 
-  @Column({
-    type: 'int',
-    default: 0,
-  })
-  quantity: number;
-
-  @Column({
-    type: 'varchar',
-    length: 100,
-    nullable: true,
-  })
-  color: string;
-
-  @Column({
-    type: 'int',
-    nullable: true,
-    comment: 'Dung lượng bộ nhớ ROM (GB)',
-  })
-  rom: number;
-
-  @Column({
-    type: 'int',
-    nullable: true,
-    comment: 'Dung lượng RAM (GB)',
-  })
-  ram: number;
-
-  @ManyToOne(() => Category, (category) => category.id, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'categoryId' })
-  category: Category;
-
-  @Column()
-  categoryId: number;
+  @OneToMany(() => Variant, (variant) => variant.product)
+  variants: Variant[];
 }
