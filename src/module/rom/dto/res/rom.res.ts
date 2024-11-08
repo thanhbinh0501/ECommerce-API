@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Expose, Transform } from 'class-transformer';
 
-export class ProductRes {
+export class RomRes {
   @Expose()
   @ApiProperty()
   @Transform(({ value }) => Number(value))
@@ -9,7 +9,7 @@ export class ProductRes {
 
   @Expose()
   @ApiProperty()
-  name: string;
+  size: string;
 
   @Expose()
   @ApiProperty()

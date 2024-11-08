@@ -1,6 +1,8 @@
-import { Column, Entity, ManyToOne, JoinColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 import { BaseEntityModel } from './base.entity';
-import { Category } from './category.entity';
+import { ProductCategory } from './product-category.entity';
+import { Variant } from './variant.entity';
+import { Category } from '@entity/category.entity';
 
 @Entity('products')
 export class Product extends BaseEntityModel {
@@ -14,43 +16,17 @@ export class Product extends BaseEntityModel {
   description: string;
 
   @Column({
-    type: 'decimal',
-    precision: 10,
-    scale: 2,
+    type: 'bigint',
+    nullable: true
   })
-  price: number;
+  categoryId: number;
 
-  @Column({
-    type: 'int',
-    default: 0,
-  })
-  quantity: number;
-
-  @Column({
-    type: 'varchar',
-    length: 100,
-    nullable: true,
-  })
-  color: string;
-
-  @Column({
-    type: 'int',
-    nullable: true,
-    comment: 'Dung lượng bộ nhớ ROM (GB)',
-  })
-  rom: number;
-
-  @Column({
-    type: 'int',
-    nullable: true,
-    comment: 'Dung lượng RAM (GB)',
-  })
-  ram: number;
-
-  @ManyToOne(() => Category, (category) => category.id, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'categoryId' })
+  @ManyToOne(() => Category, (category) => category.products)
   category: Category;
 
-  @Column()
-  categoryId: number;
+  @OneToMany(() => ProductCategory, (productCategory) => productCategory.product, { cascade: true })
+  productCategories: ProductCategory[];
+
+  @OneToMany(() => Variant, (variant) => variant.product)
+  variants: Variant[];
 }

@@ -1,10 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsOptional } from 'class-validator';
 
-export class ProductUpdateReq {
+export class RomUpdateReq {
   @IsOptional()
   @ApiProperty({ required: false })
-  name?: string;
+  size?: string;
 
   @IsOptional()
   @ApiProperty({ required: false })

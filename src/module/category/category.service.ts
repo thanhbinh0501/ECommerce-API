@@ -37,4 +37,9 @@ export class CategoryService {
 
     return this.repository.fetchCategories(keyword, pageRequest);
   }
+
+  async remove(id: number): Promise<void> {
+    this.log.info(`Remove category with ID #${id}`);
+    await this.repository.delete(id);
+  }
 }

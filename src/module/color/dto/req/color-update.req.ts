@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsOptional } from 'class-validator';
 
-export class ProductUpdateReq {
+export class ColorUpdateReq {
   @IsOptional()
   @ApiProperty({ required: false })
   name?: string;
