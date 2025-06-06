@@ -7,6 +7,7 @@ import { OrmConfig } from '@database/data-source';
 import { AppController } from '@module/app.controller';
 
 import { AuthModule } from './auth/auth.module';
+import { CategoryModule } from './category/category.module';
 import { UserModule } from './user/user.module';
 
 @Module({
@@ -34,6 +35,7 @@ import { UserModule } from './user/user.module';
     }),
     AuthModule,
     UserModule,
+    CategoryModule,
   ],
   controllers: [AppController],
 })
